@@ -42,16 +42,21 @@
 .modal-content {
   background: rgb(203, 213, 16);
   padding: 20px;
-  width: 500px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
   border-radius: 12px;
+  box-sizing: border-box;
 }
+
 
 .slider-img {
   width: 100%;
-  height: 300px;
+  height: auto;
+  max-height: 300px;
   object-fit: contain;
   border-radius: 10px;
-  margin: auto;
+  margin: 10px auto;
   display: block;
 }
 
