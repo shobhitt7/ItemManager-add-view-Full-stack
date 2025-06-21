@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import itemRoutes from './Routes/itemRoutes.js';
+import fs from 'fs';
 
 dotenv.config();
 const app = express();
@@ -17,6 +18,11 @@ mongoose.connect(process.env.MONGO_URL)
   .catch((err) => console.error('❌ MongoDB connection error:', err));
 
 app.use('/api/items', itemRoutes);
+
+const uploadDir = './uploads';
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir);
+}
 
 app.listen(process.env.PORT, () => {
   console.log(`🚀 Server running on http://localhost:${process.env.PORT}`);
