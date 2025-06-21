@@ -1,0 +1,24 @@
+.nav-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.navbar a{
+    text-decoration: none;
+    margin-right: 26px;
+    color: rgb(249, 247, 253);
+    font-weight: 600;
+    background-color: rgb(66, 25, 189);
+    padding: 10px;
+    border-radius: 8px;
+}
+.navbar{
+    margin-top: 10px;
+}
+
+.nav-link.active {
+  background-color: #ff9800;
+  font-weight: bold;
+  color: white;
+}
