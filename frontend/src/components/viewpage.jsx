@@ -18,7 +18,7 @@ export default function ViewItemsPage() {
   //slider working using slick-carousel a react plugin used for sliding images
   const sliderSettings = {
     dots: true,
-    infinite: selectedItem.additionalImages?.length > 0,
+    infinite: selectedItem?.additionalImages?.length > 0,
     arrows: true,
     speed: 500,
     slidesToShow: 1,
@@ -95,19 +95,22 @@ export default function ViewItemsPage() {
             <p><strong>Description:</strong> {selectedItem.description}</p>
 
           
-            <Slider {...sliderSettings}>
-              {[selectedItem.coverImage, ...(selectedItem.additionalImages || [])]
-                .filter((img, idx, arr) => arr.indexOf(img) === idx)
-                .map((img, i) => (
-                  <div key={i}>
-                    <img
-                      src={`${import.meta.env.VITE_BACKEND_URL.replace(/\/$/, '')}/${img.replace(/^\//, '')}`}
-                      alt={`slide-${i}`}
-                      className="slider-img"
-                    />
-                  </div>
-              ))}
-            </Slider>
+            {selectedItem && (
+  <Slider {...sliderSettings}>
+    {[selectedItem.coverImage, ...(selectedItem.additionalImages || [])]
+      .filter((img, idx, arr) => arr.indexOf(img) === idx)
+      .map((img, i) => (
+        <div key={i}>
+          <img
+            src={`${import.meta.env.VITE_BACKEND_URL.replace(/\/$/, '')}/${img.replace(/^\//, '')}`}
+            alt={`slide-${i}`}
+            className="slider-img"
+          />
+        </div>
+    ))}
+  </Slider>
+)}
+
 
             <br />
             <button onClick={() => setShowEnquiryModal(true)}>Enquire</button>
