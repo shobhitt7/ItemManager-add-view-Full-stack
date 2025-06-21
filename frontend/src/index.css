@@ -132,5 +132,40 @@
   }
 }
 
+.item-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.item-info {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 5px 0;
+  color: #555;
+}
+
+@media (max-width: 768px) {
+  .item-title {
+    font-size: 1.4rem;
+  }
+
+  .item-info {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .item-title {
+    font-size: 1.2rem;
+  }
+
+  .item-info {
+    font-size: 0.9rem;
+  }
+}
+
 
 

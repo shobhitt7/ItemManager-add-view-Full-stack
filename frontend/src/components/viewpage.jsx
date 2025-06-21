@@ -90,9 +90,10 @@ export default function ViewItemsPage() {
       {selectedItem && (
         <div className="modal-overlay">
           <div className="modal-content">
-            <h3>{selectedItem.name}</h3>
-            <p><strong>Type:</strong> {selectedItem.type}</p>
-            <p><strong>Description:</strong> {selectedItem.description}</p>
+            <h3 className="item-title">{selectedItem.name}</h3>
+<p className="item-info"><strong>Type:</strong> {selectedItem.type}</p>
+<p className="item-info"><strong>Description:</strong> {selectedItem.description}</p>
+
 
           
             {selectedItem && (
