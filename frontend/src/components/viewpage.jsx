@@ -113,8 +113,12 @@ export default function ViewItemsPage() {
 
 
             <br />
-            <button onClick={() => setShowEnquiryModal(true)}>Enquire</button>
-            <button onClick={() => setSelectedItem(null)} style={{ marginLeft: '10px' }}>Close</button>
+           <button className="modal-btn enquire-btn" onClick=   {() => setShowEnquiryModal(true)}>
+                     Enquire
+                    </button>
+           <button className="modal-btn close-btn" onClick={() => setSelectedItem(null)}>
+            Close
+              </button>
           </div>
 
           {/* this is enquiry emailjs form */}

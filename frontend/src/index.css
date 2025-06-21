@@ -90,4 +90,47 @@
   opacity: 1 !important;
 }
 
+.modal-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+  justify-content: center;
+}
+
+.modal-btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.enquire-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.enquire-btn:hover {
+  background-color: #0056b3;
+}
+
+.close-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.close-btn:hover {
+  background-color: #d32f2f;
+}
+
+@media (max-width: 480px) {
+  .modal-btn {
+    width: 100%;
+    font-size: 0.95rem;
+  }
+}
+
+
 
