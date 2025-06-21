@@ -51,6 +51,8 @@
   height: 300px;
   object-fit: contain;
   border-radius: 10px;
+  margin: auto;
+  display: block;
 }
 
 .slick-prev,

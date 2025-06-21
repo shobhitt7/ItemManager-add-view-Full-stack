@@ -18,7 +18,7 @@ export default function ViewItemsPage() {
   //slider working using slick-carousel a react plugin used for sliding images
   const sliderSettings = {
     dots: true,
-    infinite: true,
+    infinite: selectedItem.additionalImages?.length > 0,
     arrows: true,
     speed: 500,
     slidesToShow: 1,
