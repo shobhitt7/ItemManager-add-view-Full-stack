@@ -38,6 +38,7 @@ const additionalImagePaths = req.files['additionalImages']
   : []
 
 
+
     const newItem = new Item({
       name,
       type,
