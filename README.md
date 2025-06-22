@@ -26,8 +26,8 @@ A full-stack application where users can add, view, and delete items along with 
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/your-username/item-app.git
-cd item-app
+git clone https://github.com/shobhitt7/ItemManager-add-view-Full-stack
+cd itemManager
 
 # 2. Backend setup
 cd backend

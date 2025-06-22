@@ -15,7 +15,7 @@ export default function ViewItemsPage() {
   const formRef = useRef()
 
 
-  //slider working using slick-carousel a react plugin used for sliding images
+  //here slider working using slick-carousel a react plugin used for sliding images
   const sliderSettings = {
     dots: true,
     infinite: selectedItem?.additionalImages?.length > 0,

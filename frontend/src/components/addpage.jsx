@@ -3,6 +3,8 @@ import '../App.css'
 import Loader from './loader.jsx'
 
 export default function AddPage() {
+
+  //here we are handling form useState
   const [form, setForm] = useState({
     name: '',
     type: '',
@@ -12,6 +14,7 @@ export default function AddPage() {
   const [coverImage, setCoverImage] = useState(null)
   const [additionalImages, setAdditionalImages] = useState([])
 
+   //this is for loader 
   const [loading, setLoading] = useState(false)
 
   const handleChange = (e) => {
@@ -34,7 +37,9 @@ export default function AddPage() {
     additionalImages.forEach((img) => {
       formData.append('additionalImages', img)
     })
+     
 
+    //here we are uploading our add item data to backend
     try {
       const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/items`, {
         method: 'POST',
@@ -58,7 +63,8 @@ export default function AddPage() {
       setLoading(false)
     }
   }
-
+  
+  //this is jsx 
   return loading ? (
     <Loader />
   ) : (
