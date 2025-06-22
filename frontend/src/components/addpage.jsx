@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import '../App.css'
-import Loader from './Loader'
+import Loader from './loader.jsx'
 
 export default function AddPage() {
   const [form, setForm] = useState({
