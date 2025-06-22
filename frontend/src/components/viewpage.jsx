@@ -7,13 +7,19 @@ import "slick-carousel/slick/slick-theme.css"
 
 export default function ViewItemsPage() {
   const [items, setItems] = useState([])
-
   const [selectedItem, setSelectedItem] = useState(null)
-
   const [showEnquiryModal, setShowEnquiryModal] = useState(false)
-  
   const formRef = useRef()
 
+  // Helper function to get correct image URL
+  const getImageUrl = (imageUrl) => {
+    // If it's already a full URL (starts with http), use it directly
+    if (imageUrl && imageUrl.startsWith('http')) {
+      return imageUrl;
+    }
+    // Otherwise, construct the URL (for local development)
+    return `${import.meta.env.VITE_BACKEND_URL}/uploads/${imageUrl}`;
+  };
 
   //here slider working using slick-carousel a react plugin used for sliding images
   const sliderSettings = {
@@ -24,7 +30,6 @@ export default function ViewItemsPage() {
     slidesToShow: 1,
     slidesToScroll: 1,
   }
-
 
   //here fetching the details from backend
   useEffect(() => {
@@ -76,9 +81,13 @@ export default function ViewItemsPage() {
             onClick={() => setSelectedItem(item)}
           >
             <img
-              src={`${import.meta.env.VITE_BACKEND_URL.replace(/\/$/, '')}/${item.coverImage.replace(/^\//, '')}`}
+              src={getImageUrl(item.coverImage)}
               alt={item.name}
               className="cover-img"
+              onError={(e) => {
+                console.error('Cover image failed to load:', e.target.src);
+                console.error('Original coverImage value:', item.coverImage);
+              }}
             />
             <p><strong>{item.name}</strong></p>
             <button onClick={(e) => handleDelete(e, item._id)}>Delete</button>
@@ -91,35 +100,36 @@ export default function ViewItemsPage() {
         <div className="modal-overlay">
           <div className="modal-content">
             <h3 className="item-title">{selectedItem.name}</h3>
-<p className="item-info"><strong>Type:</strong> {selectedItem.type}</p>
-<p className="item-info"><strong>Description:</strong> {selectedItem.description}</p>
+            <p className="item-info"><strong>Type:</strong> {selectedItem.type}</p>
+            <p className="item-info"><strong>Description:</strong> {selectedItem.description}</p>
 
-
-          
             {selectedItem && (
-  <Slider {...sliderSettings}>
-    {[selectedItem.coverImage, ...(selectedItem.additionalImages || [])]
-      .filter((img, idx, arr) => arr.indexOf(img) === idx)
-      .map((img, i) => (
-        <div key={i}>
-          <img
-            src={`${import.meta.env.VITE_BACKEND_URL.replace(/\/$/, '')}/${img.replace(/^\//, '')}`}
-            alt={`slide-${i}`}
-            className="slider-img"
-          />
-        </div>
-    ))}
-  </Slider>
-)}
-
+              <Slider {...sliderSettings}>
+                {[selectedItem.coverImage, ...(selectedItem.additionalImages || [])]
+                  .filter((img, idx, arr) => arr.indexOf(img) === idx)
+                  .map((img, i) => (
+                    <div key={i}>
+                      <img
+                        src={getImageUrl(img)}
+                        alt={`slide-${i}`}
+                        className="slider-img"
+                        onError={(e) => {
+                          console.error('Slider image failed to load:', e.target.src);
+                          console.error('Original image value:', img);
+                        }}
+                      />
+                    </div>
+                ))}
+              </Slider>
+            )}
 
             <br />
-           <button className="modal-btn enquire-btn" onClick=   {() => setShowEnquiryModal(true)}>
-                     Enquire
-                    </button>
-           <button className="modal-btn close-btn" onClick={() => setSelectedItem(null)}>
-            Close
-              </button>
+            <button className="modal-btn enquire-btn" onClick={() => setShowEnquiryModal(true)}>
+              Enquire
+            </button>
+            <button className="modal-btn close-btn" onClick={() => setSelectedItem(null)}>
+              Close
+            </button>
           </div>
 
           {/* this is enquiry emailjs form */}
