@@ -27,10 +27,16 @@ router.post('/', upload.fields([
 
     const { name, type, description } = req.body
 
-    const coverImagePath = req.files['coverImage']?.[0].path
+    const coverImagePath = req.files['coverImage']?.[0]
+    ? `${req.protocol}://${req.get('host')}/${req.files['coverImage'][0].path.replace(/\\/g, '/')}`
+    : null
+
     const additionalImagePaths = req.files['additionalImages']
-      ? req.files['additionalImages'].map(file => file.path)
-      : []
+    ? req.files['additionalImages'].map(file =>
+      `${req.protocol}://${req.get('host')}/${file.path.replace(/\\/g, '/')}`
+    )
+    : []
+
 
     const newItem = new Item({
       name,
