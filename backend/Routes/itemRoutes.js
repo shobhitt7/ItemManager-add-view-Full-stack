@@ -7,13 +7,17 @@ const router = express.Router();
 // this is multer
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'uploads') 
+    cb(null, 'uploads');
   },
   filename: (req, file, cb) => {
-    const uniqueName = Date.now() + '-' + file.originalname;
+    const originalName = file.originalname
+      .replace(/\s+/g, '-')           // Replace spaces with hyphens
+      .replace(/[^\w.-]/g, '')        // Remove special characters
+    const uniqueName = Date.now() + '-' + originalName;
     cb(null, uniqueName);
-  },
-})
+  }
+});
+
 
 const upload = multer({ storage })
 
